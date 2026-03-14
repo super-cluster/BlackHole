@@ -1,0 +1,125 @@
+.skills__header { margin-bottom: 3rem; }
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.skills__cat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Color top bar */
+.skills__cat-bar {
+  height: 3px;
+  background: var(--cat-color, var(--color-gold));
+  opacity: 0.7;
+}
+
+.skills__cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 1.25rem 0;
+}
+
+.skills__cat-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cat-color, var(--color-gold));
+}
+
+.skills__cat-name {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+.skills__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.skills__pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  background: rgba(232,197,71,0.06);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  cursor: default;
+  transition: all var(--transition-fast);
+}
+
+.skills__pill:hover {
+  background: color-mix(in srgb, var(--pill-color) 15%, transparent);
+  border-color: var(--pill-color);
+  color: var(--pill-color);
+  transform: translateY(-2px);
+}
+
+/* WEAPON RACK */
+.skills__rack {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.skills__rack-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim);
+  margin-bottom: 0.85rem;
+}
+
+.skills__rack-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills__rack-item {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  padding: 0.28rem 0.7rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: default;
+  transition: all var(--transition-fast);
+}
+
+.skills__rack-item:hover {
+  color: var(--color-gold);
+  border-color: var(--color-border);
+}
+
+@media (max-width: 640px) {
+  .skills__grid { grid-template-columns: 1fr; }
+}

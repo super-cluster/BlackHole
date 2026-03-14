@@ -1,0 +1,247 @@
+.about__header { margin-bottom: 2.5rem; }
+
+/* STATS */
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.about__stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 0.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all var(--transition-base);
+  cursor: default;
+}
+
+.about__stat:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(232, 197, 71, 0.12);
+}
+
+.about__stat-icon { font-size: 1.3rem; }
+
+.about__stat-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  background: var(--gradient-gold-shine);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+/* GRID */
+.about__grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* IDENTITY CARD */
+.about__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about__identity-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.about__avatar {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.about__avatar-text {
+  position: relative;
+  z-index: 1;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a3a5c, #0e2040);
+  border: 1.5px solid var(--color-gold-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--color-gold);
+}
+
+.about__avatar-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(232, 197, 71, 0.35);
+  animation: compassSpin 18s linear infinite;
+}
+
+.about__identity-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+.about__identity-rank {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+}
+
+.about__identity-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__identity-anchor {
+  background: var(--color-surface);
+  padding: 0 0.5rem;
+  color: var(--color-gold-dim);
+}
+
+/* CONTACT LIST */
+.about__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  word-break: break-all;
+}
+
+.about__contact-item svg { flex-shrink: 0; color: var(--color-gold-dim); }
+
+.about__contact-item:hover {
+  color: var(--color-gold);
+  border-color: var(--color-border);
+  background: rgba(232, 197, 71, 0.05);
+}
+
+.about__crew-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.07);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  border-radius: 3px;
+  padding: 0.5rem 0.8rem;
+}
+
+.about__crew-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  animation: goldPulse 2s infinite;
+}
+
+/* RIGHT SIDE */
+.about__right { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.about__card-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about__bio-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+.about__bio-text:last-child { margin-bottom: 0; }
+.about__bio-text strong { color: var(--color-gold-light); font-weight: 600; }
+
+/* EDUCATION */
+.about__edu-degree {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.about__edu-inst {
+  font-size: 0.8rem;
+  color: var(--color-ocean-light);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.about__edu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.about__edu-cgpa {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-gold);
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 900px) {
+  .about__stats { grid-template-columns: repeat(2, 1fr); }
+  .about__grid  { grid-template-columns: 1fr; }
+}

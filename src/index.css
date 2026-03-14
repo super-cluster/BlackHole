@@ -1,0 +1,398 @@
+/* =========================================
+   ONE PIECE — DESIGN SYSTEM
+   ========================================= */
+:root {
+  /* OCEAN COLOR PALETTE */
+  --color-bg:           #030a16;
+  --color-bg-secondary: #050e1e;
+  --color-surface:      #0a1628;
+  --color-surface-2:    #0f1e35;
+  --color-surface-3:    #152540;
+
+  /* BORDERS */
+  --color-border:       rgba(232, 197, 71, 0.12);
+  --color-border-hover: rgba(232, 197, 71, 0.45);
+
+  /* GOLD — Treasure of the Grand Line */
+  --color-gold:         #e8c547;
+  --color-gold-light:   #f5da6a;
+  --color-gold-dim:     #c9a832;
+  --color-gold-glow:    rgba(232, 197, 71, 0.25);
+
+  /* RED — Straw Hat Spirit */
+  --color-red:          #c0392b;
+  --color-red-light:    #e74c3c;
+  --color-red-glow:     rgba(231, 76, 60, 0.3);
+
+  /* OCEAN BLUE */
+  --color-ocean:        #1a7fc1;
+  --color-ocean-light:  #2596e0;
+  --color-ocean-glow:   rgba(26, 127, 193, 0.3);
+  --color-teal:         #06b6d4;
+
+  /* TEXT */
+  --color-text:         #f0e6c8;
+  --color-text-secondary: #9aadbe;
+  --color-text-muted:   #4a6378;
+
+  /* GRADIENTS */
+  --gradient-gold:        linear-gradient(135deg, #e8c547, #c9a832);
+  --gradient-gold-shine:  linear-gradient(90deg, #c9a832, #f5da6a, #c9a832);
+  --gradient-ocean:       linear-gradient(135deg, #1a7fc1, #0a4a7a);
+  --gradient-hero:        radial-gradient(ellipse 90% 70% at 50% -10%, rgba(232, 197, 71, 0.1) 0%, transparent 65%);
+  --gradient-card:        linear-gradient(135deg, rgba(232, 197, 71, 0.04), rgba(26, 127, 193, 0.04));
+
+  /* TYPOGRAPHY */
+  --font-heading: 'Cinzel', Georgia, serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* LAYOUT */
+  --section-padding:  clamp(5rem, 10vw, 9rem);
+  --container-max:    1200px;
+
+  /* RADIUS */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  /* SHADOWS */
+  --shadow-gold:       0 0 40px rgba(232, 197, 71, 0.12);
+  --shadow-card:       0 4px 30px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 8px 48px rgba(232, 197, 71, 0.15);
+
+  /* TRANSITIONS */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.55s ease;
+}
+
+/* =========================================
+   RESET & BASE
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #030a16;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+/* =========================================
+   LAYOUT
+   ========================================= */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 3rem);
+}
+
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+/* =========================================
+   SECTION LABELS & TITLES
+   ========================================= */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: rgba(232, 197, 71, 0.08);
+  border: 1px solid rgba(232, 197, 71, 0.2);
+  padding: 0.35rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.section-label::before,
+.section-label::after {
+  content: '⚓';
+  font-size: 0.6rem;
+  opacity: 0.6;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.section-title .highlight {
+  background: var(--gradient-gold-shine);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 560px;
+  line-height: 1.75;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.85rem;
+  border-radius: 3px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn:hover::after { opacity: 1; }
+
+.btn-primary {
+  background: var(--gradient-gold);
+  color: #030a16;
+  box-shadow: 0 4px 20px var(--color-gold-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(232, 197, 71, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1.5px solid rgba(232, 197, 71, 0.4);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  background: rgba(232, 197, 71, 0.06);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   CARD
+   ========================================= */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.card:hover::before { opacity: 1; }
+
+/* =========================================
+   TAGS / BADGES
+   ========================================= */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  background: rgba(232, 197, 71, 0.08);
+  color: var(--color-gold);
+  border: 1px solid rgba(232, 197, 71, 0.18);
+  transition: all var(--transition-fast);
+}
+
+.tag:hover {
+  background: rgba(232, 197, 71, 0.15);
+}
+
+/* =========================================
+   DECORATIVE DIVIDER
+   ========================================= */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 197, 71, 0.2), transparent);
+  margin: 0;
+  position: relative;
+}
+
+.divider::after {
+  content: '⚓';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  color: var(--color-gold-dim);
+  background: var(--color-bg);
+  padding: 0 1rem;
+  opacity: 0.6;
+}
+
+/* =========================================
+   ORB DECORATIONS
+   ========================================= */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+  animation: floatOrb 14s ease-in-out infinite;
+}
+
+.orb-gold {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.08) 0%, transparent 70%);
+}
+
+.orb-ocean {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(26, 127, 193, 0.1) 0%, transparent 70%);
+}
+
+.orb-red {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 0%, transparent 70%);
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-25px, 20px) scale(1.05); }
+  66%       { transform: translate(20px, -15px) scale(0.97); }
+}
+
+/* =========================================
+   NOISE OVERLAY
+   ========================================= */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =========================================
+   WAVE SVG SEPARATOR
+   ========================================= */
+.wave-sep {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-bottom: -2px;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(232, 197, 71, 0.2); }
+  50%       { box-shadow: 0 0 40px rgba(232, 197, 71, 0.4), 0 0 70px rgba(232, 197, 71, 0.1); }
+}
+
+@keyframes typing-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes waveFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes compassSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .card { padding: 1.2rem; }
+}

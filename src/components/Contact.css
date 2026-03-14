@@ -1,0 +1,186 @@
+.contact__header { margin-bottom: 3rem; }
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* INFO */
+.contact__snail {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  animation: waveFloat 4s ease-in-out infinite;
+}
+
+.contact__info-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-gold-light);
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.contact__info-text {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+/* LINKS */
+.contact__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact__link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+}
+
+.contact__link:hover {
+  border-color: var(--color-border-hover);
+  transform: translateX(5px);
+  background: rgba(232, 197, 71, 0.04);
+}
+
+.contact__link-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(232, 197, 71, 0.1);
+  border: 1px solid rgba(232, 197, 71, 0.2);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact__link-icon--li  { background: rgba(10,102,194,0.12); border-color: rgba(10,102,194,0.25); color: #4da6ff; }
+.contact__link-icon--loc { background: rgba(6,182,212,0.10);  border-color: rgba(6,182,212,0.22);  color: var(--color-teal); }
+
+.contact__link-label {
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.1rem;
+  font-family: var(--font-mono);
+}
+
+.contact__link-value {
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+/* AVAILABILITY */
+.contact__avail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  background: rgba(232, 197, 71, 0.07);
+  border: 1px solid rgba(232, 197, 71, 0.2);
+  border-radius: 3px;
+  padding: 0.55rem 1rem;
+}
+
+.contact__avail-icon { animation: compassSpin 6s linear infinite; }
+
+/* FORM */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact__label {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.contact__input {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  outline: none;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.contact__input::placeholder { color: var(--color-text-muted); }
+
+.contact__input:focus {
+  border-color: var(--color-gold-dim);
+  background: rgba(232, 197, 71, 0.03);
+  box-shadow: 0 0 0 3px rgba(232, 197, 71, 0.1);
+}
+
+.contact__textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+.contact__submit   { align-self: flex-start; }
+
+/* SUCCESS */
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  padding: 2.5rem 1rem;
+}
+
+.contact__success-icon { color: var(--color-gold); }
+
+.contact__success h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+}
+
+.contact__success p { font-size: 0.875rem; color: var(--color-text-secondary); max-width: 300px; }
+
+@media (max-width: 900px) {
+  .contact__grid     { grid-template-columns: 1fr; }
+  .contact__form-row { grid-template-columns: 1fr; }
+}

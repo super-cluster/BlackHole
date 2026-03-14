@@ -1,0 +1,8 @@
+/* App-level layout — padding for fixed navbar */
+main { padding-top: 68px; }
+
+#about      { background: var(--color-bg-secondary); }
+#experience { background: var(--color-bg); }
+#projects   { background: var(--color-bg-secondary); position: relative; overflow: hidden; }
+#skills     { background: var(--color-bg); }
+#contact    { background: var(--color-bg-secondary); position: relative; overflow: hidden; }
