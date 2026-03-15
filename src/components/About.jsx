@@ -6,10 +6,10 @@ import { useInView } from '../hooks/useInView'
 import { Mail, Linkedin, MapPin, GraduationCap, Award, Anchor } from 'lucide-react'
 
 const STATS = [
-  { value: '3+',  label: 'Years at Sea',      icon: '⚓' },
-  { value: '5K+', label: 'Hotels Powered',    icon: '🏨' },
-  { value: '8',   label: 'Languages Sailed',  icon: '🌍' },
-  { value: '0',   label: 'Downtime Battles',  icon: '⚡' },
+  { value: '3+',  label: 'Years in Orbit',   icon: '🌀' },
+  { value: '5K+', label: 'Systems Powered',   icon: '⚡' },
+  { value: '8',   label: 'Lang Horizons',     icon: '🌌' },
+  { value: '0',   label: 'System Collapses',  icon: '🕳️' },
 ]
 
 export default function About() {
@@ -29,12 +29,12 @@ export default function About() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
         >
-          <span className="section-label">The Legend</span>
+          <span className="section-label">Entity Profile</span>
           <h2 className="section-title">
-            A Pirate who writes <span className="highlight">clean code</span>
+            Code that bends <span className="highlight">spacetime</span>
           </h2>
           <p className="section-subtitle">
-            Sailing the tech seas for 3+ years — engineering enterprise systems that serve thousands of hospitality venues worldwide.
+            3+ years engineering distributed systems that power thousands of hospitality venues across the known universe.
           </p>
         </motion.div>
 
@@ -94,7 +94,7 @@ export default function About() {
 
             <div className="about__crew-badge">
               <span className="about__crew-dot" />
-              Seeking new crew &amp; adventures
+              Seeking new orbital paths &amp; opportunities
             </div>
           </motion.div>
 
@@ -106,12 +106,12 @@ export default function About() {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.25 }}
             >
-              <h3 className="about__card-title">⚔️ The Captain&apos;s Log</h3>
+            <h3 className="about__card-title">🌌 System Log</h3>
               <p className="about__bio-text">
-                I&apos;m a Software Engineer III at <strong>Sabre Hospitality</strong>, crafting enterprise-grade software that powers thousands of hotels across the globe. My voyages span designing cloud-agnostic storage systems, integrating global payment gateways, and modernizing legacy codebases — all while shipping beautiful React frontends.
+                Software Engineer III at <strong>Sabre Hospitality</strong> — engineering systems at the scale of black holes, powering thousands of hotels worldwide. My work spans cloud-agnostic storage, global payment gateways, zero-downtime migrations, and modern React frontends.
               </p>
               <p className="about__bio-text">
-                I thrive at the crossroads of <strong>backend reliability</strong> and <strong>frontend craftsmanship</strong>, writing code that is clean, performant, and battle-hardened.
+                I thrive at the gravitational center of <strong>backend reliability</strong> and <strong>frontend craftsmanship</strong> — writing code that is clean, performant, and battle-hardened.
               </p>
             </motion.div>
 
@@ -123,7 +123,7 @@ export default function About() {
             >
               <h3 className="about__card-title">
                 <GraduationCap size={17} />
-                Academy of Origins
+                Origin Coordinates
               </h3>
               <p className="about__edu-degree">{education.degree}</p>
               <p className="about__edu-inst">{education.institution}</p>

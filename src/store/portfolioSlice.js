@@ -5,7 +5,7 @@ const portfolioSlice = createSlice({
   initialState: {
     personal: {
       name: 'Anurag',
-      title: 'SDE-2 | Full-Stack Developer',
+      title: 'Software Engineer III | Full-Stack Developer',
       tagline: 'Building scalable distributed systems & modern React UIs',
       bio: 'Approx. 3 years of experience in Java-based distributed systems and React.js modernizations. Passionate about clean architecture, performance at scale, and shipping products that matter.',
       email: 'anuragcooldavkh@gmail.com',

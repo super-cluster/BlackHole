@@ -1,4 +1,4 @@
-/* App-level layout — padding for fixed navbar */
+/* App layout */
 main { padding-top: 68px; }
 
 #about      { background: var(--color-bg-secondary); }

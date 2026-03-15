@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
-  { id: 'about',      label: 'The Legend' },
-  { id: 'experience', label: 'Grand Voyage' },
-  { id: 'projects',   label: 'Conquests' },
-  { id: 'skills',     label: 'Arsenal' },
-  { id: 'contact',    label: 'Reach Out' },
+  { id: 'about',      label: 'Entity Profile' },
+  { id: 'experience', label: 'Orbital Records' },
+  { id: 'projects',   label: 'Singularity Events' },
+  { id: 'skills',     label: 'Dark Matter' },
+  { id: 'contact',    label: 'Transmit Signal' },
 ]
 
 export default function Navbar() {
@@ -25,16 +25,14 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar__inner container">
-        {/* LOGO */}
         <button className="navbar__logo" onClick={() => handleNav('hero')} id="navbar-logo">
-          <span className="navbar__logo-skull">☠</span>
+          <span className="navbar__logo-icon">🕳</span>
           <span className="navbar__logo-name">ANURAG</span>
           <span className="navbar__logo-sub">SDE-2</span>
         </button>
 
-        {/* DESKTOP LINKS */}
-        <nav className="navbar__links" role="navigation">
-          {NAV_LINKS.map((link) => (
+        <nav className="navbar__links">
+          {NAV_LINKS.map(link => (
             <button
               key={link.id}
               className={`navbar__link ${active === link.id ? 'navbar__link--active' : ''}`}
@@ -42,54 +40,29 @@ export default function Navbar() {
               id={`nav-${link.id}`}
             >
               {link.label}
-              {active === link.id && (
-                <motion.span
-                  className="navbar__link-underline"
-                  layoutId="nav-underline"
-                />
-              )}
+              {active === link.id && <motion.span className="navbar__link-underline" layoutId="nav-underline" />}
             </button>
           ))}
         </nav>
 
-        {/* CTA */}
         <a href="mailto:anuragcooldavkh@gmail.com" className="btn btn-primary navbar__cta" id="navbar-hire-btn">
           Hire Me ⚡
         </a>
 
-        {/* HAMBURGER */}
-        <button
-          className="navbar__hamburger"
-          onClick={() => dispatch(toggleMobileMenu())}
-          aria-label="Toggle menu"
-          id="navbar-hamburger"
-        >
+        <button className="navbar__hamburger" onClick={() => dispatch(toggleMobileMenu())} aria-label="Toggle menu" id="navbar-hamburger">
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            className="navbar__mobile"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.22 }}
-          >
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.id}
-                className={`navbar__mobile-link ${active === link.id ? 'active' : ''}`}
-                onClick={() => handleNav(link.id)}
-              >
+          <motion.div className="navbar__mobile" initial={{ opacity:0, y:-16 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-16 }} transition={{ duration:0.2 }}>
+            {NAV_LINKS.map(link => (
+              <button key={link.id} className={`navbar__mobile-link ${active === link.id ? 'active' : ''}`} onClick={() => handleNav(link.id)}>
                 {link.label}
               </button>
             ))}
-            <a href="mailto:anuragcooldavkh@gmail.com" className="btn btn-primary" style={{ marginTop: '0.5rem' }}>
-              Hire Me ⚡
-            </a>
+            <a href="mailto:anuragcooldavkh@gmail.com" className="btn btn-primary" style={{ marginTop:'0.5rem' }}>Hire Me ⚡</a>
           </motion.div>
         )}
       </AnimatePresence>

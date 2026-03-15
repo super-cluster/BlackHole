@@ -8,15 +8,15 @@
   gap: 1.25rem;
   margin-bottom: 1.25rem;
   padding: 1.5rem;
-  border-left: 3px solid var(--color-gold-dim);
+  border-left: 3px solid var(--color-primary-dim);
 }
 
 .exp__ship-flag {
   width: 54px;
   height: 54px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(232,197,71,0.15), rgba(232,197,71,0.05));
-  border: 1px solid rgba(232, 197, 71, 0.25);
+  background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(124,58,237,0.05));
+  border: 1px solid rgba(124, 58, 237, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
 .exp__ship-rank {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--color-gold);
+  color: var(--color-primary-light);
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -103,11 +103,9 @@
 .exp__log-entry::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 0;
-  background: var(--gradient-gold);
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--gradient-primary);
   transition: height 0.35s ease;
 }
 
@@ -117,11 +115,10 @@
   font-family: var(--font-heading);
   font-size: 0.6rem;
   font-weight: 900;
-  color: rgba(232, 197, 71, 0.25);
+  color: rgba(124, 58, 237, 0.2);
   letter-spacing: 0.05em;
   position: absolute;
-  top: 0.65rem;
-  right: 0.85rem;
+  top: 0.65rem; right: 0.85rem;
 }
 
 .exp__log-icon {
@@ -144,7 +141,7 @@
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: var(--color-gold-light);
+  color: var(--color-primary-light);
   margin-bottom: 0.3rem;
 }
 
