@@ -1,6 +1,8 @@
 .navbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background: rgba(0, 0, 3, 0.75);
   backdrop-filter: blur(18px);
@@ -26,11 +28,14 @@
   flex-shrink: 0;
   transition: all var(--transition-fast);
 }
-.navbar__logo:hover { opacity: 0.85; }
+
+.navbar__logo:hover {
+  opacity: 0.85;
+}
 
 .navbar__logo-icon {
   font-size: 1.15rem;
-  filter: drop-shadow(0 0 8px rgba(124,58,237,0.7));
+  filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.7));
   animation: singularityPulse 3s ease-in-out infinite;
 }
 
@@ -79,13 +84,20 @@
   border-radius: 3px;
   transition: color var(--transition-fast);
 }
-.navbar__link:hover     { color: var(--color-primary-light); }
-.navbar__link--active   { color: var(--color-primary-light); }
+
+.navbar__link:hover {
+  color: var(--color-primary-light);
+}
+
+.navbar__link--active {
+  color: var(--color-primary-light);
+}
 
 .navbar__link-underline {
   position: absolute;
   bottom: 2px;
-  left: 0.5rem; right: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
   height: 1.5px;
   background: var(--gradient-primary);
   border-radius: 2px;
@@ -108,7 +120,10 @@
   margin-left: auto;
   transition: all var(--transition-fast);
 }
-.navbar__hamburger:hover { background: rgba(124,58,237,0.1); }
+
+.navbar__hamburger:hover {
+  background: rgba(124, 58, 237, 0.1);
+}
 
 /* MOBILE */
 .navbar__mobile {
@@ -116,7 +131,7 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem 1.25rem 1.25rem;
-  background: rgba(0,0,3,0.97);
+  background: rgba(0, 0, 3, 0.97);
   border-top: 1px solid var(--color-border);
 }
 
@@ -135,12 +150,23 @@
   text-align: left;
   transition: all var(--transition-fast);
 }
-.navbar__mobile-link:hover, .navbar__mobile-link.active {
+
+.navbar__mobile-link:hover,
+.navbar__mobile-link.active {
   color: var(--color-primary-light);
-  background: rgba(124,58,237,0.08);
+  background: rgba(124, 58, 237, 0.08);
 }
 
 @media (max-width: 768px) {
-  .navbar__links, .navbar__cta { display: none; }
-  .navbar__hamburger { display: flex; align-items: center; justify-content: center; }
+
+  .navbar__links,
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

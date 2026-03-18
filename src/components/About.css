@@ -1,9 +1,11 @@
-.about__header { margin-bottom: 2.5rem; }
+.about__header {
+  margin-bottom: 2.5rem;
+}
 
 /* STATS */
 .about__stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 2.5rem;
 }
@@ -28,13 +30,15 @@
   box-shadow: 0 8px 30px rgba(232, 197, 71, 0.12);
 }
 
-.about__stat-icon { font-size: 1.3rem; }
+.about__stat-icon {
+  font-size: 1.3rem;
+}
 
 .about__stat-value {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 900;
-  background: var(--gradient-gold-shine);
+  background: var(--gradient-accent);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -155,7 +159,10 @@
   word-break: break-all;
 }
 
-.about__contact-item svg { flex-shrink: 0; color: var(--color-gold-dim); }
+.about__contact-item svg {
+  flex-shrink: 0;
+  color: var(--color-gold-dim);
+}
 
 .about__contact-item:hover {
   color: var(--color-gold);
@@ -186,7 +193,11 @@
 }
 
 /* RIGHT SIDE */
-.about__right { display: flex; flex-direction: column; gap: 1.25rem; }
+.about__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
 
 .about__card-title {
   font-family: var(--font-heading);
@@ -206,8 +217,15 @@
   line-height: 1.8;
   margin-bottom: 0.75rem;
 }
-.about__bio-text:last-child { margin-bottom: 0; }
-.about__bio-text strong { color: var(--color-gold-light); font-weight: 600; }
+
+.about__bio-text:last-child {
+  margin-bottom: 0;
+}
+
+.about__bio-text strong {
+  color: var(--color-gold-light);
+  font-weight: 600;
+}
 
 /* EDUCATION */
 .about__edu-degree {
@@ -242,6 +260,11 @@
 }
 
 @media (max-width: 900px) {
-  .about__stats { grid-template-columns: repeat(2, 1fr); }
-  .about__grid  { grid-template-columns: 1fr; }
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
 }

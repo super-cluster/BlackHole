@@ -5,7 +5,7 @@ const portfolioSlice = createSlice({
   initialState: {
     personal: {
       name: 'Anurag',
-      title: 'Software Engineer III | Full-Stack Developer',
+      title: 'Software Engineer | Full-Stack Developer',
       tagline: 'Building scalable distributed systems & modern React UIs',
       bio: 'Approx. 3 years of experience in Java-based distributed systems and React.js modernizations. Passionate about clean architecture, performance at scale, and shipping products that matter.',
       email: 'anuragcooldavkh@gmail.com',
@@ -24,7 +24,7 @@ const portfolioSlice = createSlice({
           {
             icon: '☁️',
             title: 'Cloud-Agnostic Storage',
-            desc: 'Engineered a storage abstraction layer using the Strategy Pattern, enabling hot-swappable vendor support (AWS S3, Azure Blob) and eliminating vendor lock-in.',
+            desc: 'Engineered a storage abstraction layer using the Strategy Pattern, enabling hot-swappable vendor support and eliminating vendor lock-in.',
           },
           {
             icon: '💳',
@@ -70,8 +70,8 @@ const portfolioSlice = createSlice({
       {
         id: 1,
         title: 'Cloud-Agnostic Abstraction Layer',
-        desc: 'Created a standardized interface for distributed storage across multiple cloud providers using the Strategy Pattern. Supports hot-swapping between AWS S3 and Azure Blob without service downtime.',
-        tags: ['Java', 'AWS S3', 'Azure Blob', 'Design Patterns', 'Spring Boot'],
+        desc: 'Created a standardized interface for distributed storage across multiple cloud providers using the Strategy Pattern. Supports hot-swapping between any vendors without service downtime.',
+        tags: ['Java', 'AWS S3', 'Design Patterns', 'Spring Boot'],
         icon: '☁️',
         color: '#6366f1',
       },

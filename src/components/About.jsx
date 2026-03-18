@@ -6,15 +6,14 @@ import { useInView } from '../hooks/useInView'
 import { Mail, Linkedin, MapPin, GraduationCap, Award, Anchor } from 'lucide-react'
 
 const STATS = [
-  { value: '3+',  label: 'Years in Orbit',   icon: '🌀' },
-  { value: '5K+', label: 'Systems Powered',   icon: '⚡' },
-  { value: '8',   label: 'Lang Horizons',     icon: '🌌' },
-  { value: '0',   label: 'System Collapses',  icon: '🕳️' },
+  { value: '3+', label: 'Years in Orbit', icon: '🌀' },
+  { value: '5K+', label: 'Systems Powered', icon: '⚡' },
+  { value: '0', label: 'System Collapses', icon: '🕳️' },
 ]
 
 export default function About() {
-  const personal   = useSelector(selectPersonal)
-  const education  = useSelector(selectEducation)
+  const personal = useSelector(selectPersonal)
+  const education = useSelector(selectEducation)
   const [ref, inView] = useInView(0.12)
 
   return (
@@ -106,7 +105,7 @@ export default function About() {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.25 }}
             >
-            <h3 className="about__card-title">🌌 System Log</h3>
+              <h3 className="about__card-title">🌌 System Log</h3>
               <p className="about__bio-text">
                 Software Engineer III at <strong>Sabre Hospitality</strong> — engineering systems at the scale of black holes, powering thousands of hotels worldwide. My work spans cloud-agnostic storage, global payment gateways, zero-downtime migrations, and modern React frontends.
               </p>
