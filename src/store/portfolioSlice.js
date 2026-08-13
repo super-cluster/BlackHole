@@ -5,9 +5,9 @@ const portfolioSlice = createSlice({
   initialState: {
     personal: {
       name: 'Anurag',
-      title: 'Software Engineer | Full-Stack Developer',
+      title: 'Software Engineer 3 | Full-Stack Developer',
       tagline: 'Building scalable distributed systems & modern React UIs',
-      bio: 'Approx. 3 years of experience in Java-based distributed systems and React.js modernizations. Passionate about clean architecture, performance at scale, and shipping products that matter.',
+      bio: 'Approx. 3+ years of experience in Java-based distributed systems and React.js modernizations. Currently building marketplace infrastructure at Walmart. Passionate about clean architecture, performance at scale, and shipping products that matter.',
       email: 'anuragcooldavkh@gmail.com',
       linkedin: 'https://linkedin.com/in/insideall',
       github: 'https://github.com/super-cluster',
@@ -16,10 +16,26 @@ const portfolioSlice = createSlice({
     experience: [
       {
         id: 1,
+        company: 'Walmart',
+        role: 'Software Engineer 3',
+        period: 'July 2026 – Present',
+        location: 'Bangalore, India',
+        active: true,
+        highlights: [
+          {
+            icon: '🛒',
+            title: 'Marketplace Infrastructure',
+            desc: 'Building scalable backend systems for Walmart Marketplace, enabling millions of sellers to reach customers across the globe.',
+          },
+        ],
+      },
+      {
+        id: 2,
         company: 'Sabre Hospitality',
         role: 'Software Engineer III',
-        period: 'January 2023 – Present',
+        period: 'January 2023 – July 2026',
         location: 'Bangalore, India',
+        active: false,
         highlights: [
           {
             icon: '☁️',
@@ -98,6 +114,9 @@ const portfolioSlice = createSlice({
       period: '2019 – 2023',
       cgpa: '9.62 / 10',
     },
+    playlist: [
+      { id: 1, title: 'Her', artist: 'JVKE', duration: 210, src: '/music/her.mp3' },
+    ],
   },
 })
 
@@ -106,5 +125,6 @@ export const selectExperience = (state) => state.portfolio.experience
 export const selectSkills = (state) => state.portfolio.skills
 export const selectProjects = (state) => state.portfolio.projects
 export const selectEducation = (state) => state.portfolio.education
+export const selectPlaylist = (state) => state.portfolio.playlist
 
 export default portfolioSlice.reducer

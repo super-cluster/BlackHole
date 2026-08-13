@@ -107,7 +107,7 @@ export default function About() {
             >
               <h3 className="about__card-title">🌌 System Log</h3>
               <p className="about__bio-text">
-                Software Engineer III at <strong>Sabre Hospitality</strong> — engineering systems at the scale of black holes, powering thousands of hotels worldwide. My work spans cloud-agnostic storage, global payment gateways, zero-downtime migrations, and modern React frontends.
+                Software Engineer 3 at <strong>Walmart Marketplace</strong> — building scalable infrastructure that powers millions of sellers and shoppers. Previously at <strong>Sabre Hospitality</strong>, where my work spanned cloud-agnostic storage, global payment gateways, zero-downtime migrations, and modern React frontends.
               </p>
               <p className="about__bio-text">
                 I thrive at the gravitational center of <strong>backend reliability</strong> and <strong>frontend craftsmanship</strong> — writing code that is clean, performant, and battle-hardened.

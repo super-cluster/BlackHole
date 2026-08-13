@@ -10,23 +10,23 @@
   --color-surface-3: #150f26;
 
   /* BORDERS */
-  --color-border: rgba(124, 58, 237, 0.14);
-  --color-border-hover: rgba(124, 58, 237, 0.45);
+  --color-border: rgba(170, 34, 255, 0.14);
+  --color-border-hover: rgba(170, 34, 255, 0.45);
 
-  /* QUANTUM VIOLET — Primary */
-  --color-primary: #7c3aed;
-  --color-primary-light: #a78bfa;
-  --color-primary-dim: #5b21b6;
-  --color-primary-glow: rgba(124, 58, 237, 0.28);
+  /* GALAXY VIOLET — Primary */
+  --color-primary: #aa22ff;
+  --color-primary-light: #c866ff;
+  --color-primary-dim: #660099;
+  --color-primary-glow: rgba(170, 34, 255, 0.28);
 
-  /* ACCRETION DISK ORANGE — Accent */
-  --color-accent: #f97316;
-  --color-accent-light: #fb923c;
-  --color-accent-glow: rgba(249, 115, 22, 0.3);
+  /* GALAXY ORANGE — Accent */
+  --color-accent: #ffaa55;
+  --color-accent-light: #ffcc88;
+  --color-accent-glow: rgba(255, 170, 85, 0.3);
 
-  /* CHERENKOV BLUE — Highlight */
-  --color-blue: #06b6d4;
-  --color-blue-glow: rgba(6, 182, 212, 0.28);
+  /* GALAXY BLUE — Highlight */
+  --color-blue: #4466ff;
+  --color-blue-glow: rgba(68, 102, 255, 0.28);
 
   /* SINGULARITY RED */
   --color-red: #dc2626;
@@ -37,11 +37,11 @@
   --color-text-muted: #4a3d6b;
 
   /* GRADIENTS */
-  --gradient-primary: linear-gradient(135deg, #7c3aed, #5b21b6);
-  --gradient-accent: linear-gradient(135deg, #f97316, #dc2626);
-  --gradient-cosmic: linear-gradient(135deg, #7c3aed, #06b6d4);
-  --gradient-violet-shine: linear-gradient(90deg, #5b21b6, #a78bfa, #5b21b6);
-  --gradient-card: linear-gradient(135deg, rgba(124, 58, 237, 0.04), rgba(6, 182, 212, 0.04));
+  --gradient-primary: linear-gradient(135deg, #aa22ff, #660099);
+  --gradient-accent: linear-gradient(135deg, #ffaa55, #dc2626);
+  --gradient-cosmic: linear-gradient(135deg, #aa22ff, #4466ff);
+  --gradient-violet-shine: linear-gradient(90deg, #660099, #c866ff, #660099);
+  --gradient-card: linear-gradient(135deg, rgba(170, 34, 255, 0.04), rgba(68, 102, 255, 0.04));
 
   /* TYPOGRAPHY */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
@@ -59,9 +59,9 @@
   --radius-xl: 24px;
 
   /* SHADOWS */
-  --shadow-violet: 0 0 40px rgba(124, 58, 237, 0.15);
+  --shadow-violet: 0 0 40px rgba(170, 34, 255, 0.15);
   --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.7);
-  --shadow-card-hover: 0 8px 48px rgba(124, 58, 237, 0.18);
+  --shadow-card-hover: 0 8px 48px rgba(170, 34, 255, 0.18);
 
   /* TRANSITIONS */
   --transition-fast: 0.15s ease;
@@ -364,6 +364,72 @@ body {
   z-index: 9999;
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================
+   STAR GLOW — ambient nebula light
+   ========================================== */
+.star-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  mix-blend-mode: screen;
+  overflow: hidden;
+}
+
+.star-glow::before,
+.star-glow::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+/* Violet nebula — top-left */
+.star-glow::before {
+  width: 80vw;
+  height: 80vw;
+  top: -25vw;
+  left: -20vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.45) 0%,
+    rgba(91, 33, 182, 0.25) 35%,
+    transparent 70%
+  );
+  filter: blur(90px);
+  animation: starDrift1 18s ease-in-out infinite alternate;
+}
+
+/* Cyan star — bottom-right */
+.star-glow::after {
+  width: 60vw;
+  height: 60vw;
+  bottom: -18vw;
+  right: -18vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(6, 182, 212, 0.40) 0%,
+    rgba(6, 182, 212, 0.18) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  animation: starDrift2 22s ease-in-out infinite alternate;
+}
+
+@keyframes starDrift1 {
+  0%   { transform: translate(0, 0) scale(1);    opacity: 0.85; }
+  33%  { transform: translate(6vw, 4vw) scale(1.1);  opacity: 1; }
+  66%  { transform: translate(-4vw, 8vw) scale(0.95); opacity: 0.7; }
+  100% { transform: translate(8vw, -3vw) scale(1.05); opacity: 0.9; }
+}
+
+@keyframes starDrift2 {
+  0%   { transform: translate(0, 0) scale(1);      opacity: 0.8; }
+  33%  { transform: translate(-5vw, -6vw) scale(1.12); opacity: 1; }
+  66%  { transform: translate(4vw, -3vw) scale(0.9);   opacity: 0.65; }
+  100% { transform: translate(-7vw, 5vw) scale(1.08);  opacity: 0.85; }
 }
 
 /* ==========================================

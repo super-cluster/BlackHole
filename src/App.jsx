@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import MusicPlayer from './components/MusicPlayer/MusicPlayer'
 import { useScrollSpy } from './hooks/useScrollSpy'
 import { useVisitorTracking } from './hooks/useVisitorTracking'
 import AdminDashboard from './pages/AdminDashboard'
@@ -18,6 +19,9 @@ function Portfolio() {
 
   return (
     <>
+      {/* Star glow — ambient gradient light across the void */}
+      {/* <div className="star-glow" aria-hidden="true" /> */}
+
       {/* Subtle noise grain overlay */}
       <div className="noise" aria-hidden="true" />
 
@@ -38,6 +42,9 @@ function Portfolio() {
       </main>
 
       <Footer />
+
+      {/* Floating music player — fixed position, visible on all sections */}
+      <MusicPlayer />
     </>
   )
 }

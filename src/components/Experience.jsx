@@ -26,7 +26,7 @@ export default function Experience() {
 
         <div className="exp__timeline">
           {experience.map((job, jobIdx) => (
-            <motion.div key={job.id} className="exp__job" initial={{ opacity:0, y:40 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.65, delay:0.12 + jobIdx * 0.1 }}>
+            <motion.div key={job.id} className={`exp__job${job.active ? '' : ' exp__job--inactive'}`} initial={{ opacity:0, y:40 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.65, delay:0.12 + jobIdx * 0.1 }}>
               <div className="exp__ship-card card">
                 <div className="exp__ship-flag">🌀</div>
                 <div className="exp__ship-info">
@@ -38,10 +38,16 @@ export default function Experience() {
                     <span><MapPin size={12} /> {job.location}</span>
                   </div>
                 </div>
-                <div className="exp__current-flag">
-                  <span className="exp__current-dot" />
-                  ACTIVE
-                </div>
+                {job.active ? (
+                  <div className="exp__current-flag">
+                    <span className="exp__current-dot" />
+                    ACTIVE
+                  </div>
+                ) : (
+                  <div className="exp__former-flag">
+                    FORMER
+                  </div>
+                )}
               </div>
 
               <div className="exp__log-grid">

@@ -1,0 +1,348 @@
+/* ── FLOATING WRAPPER ──────────────────────────────────── */
+.mp {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  width: 240px;
+  background: rgba(8, 5, 15, 0.82);
+  border: 1px solid rgba(124, 58, 237, 0.32);
+  border-radius: 8px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 0 0 1px rgba(124, 58, 237, 0.08),
+    0 0 48px rgba(124, 58, 237, 0.14),
+    0 24px 60px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ── HEADER BAR ────────────────────────────────────────── */
+.mp__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(124, 58, 237, 0.1);
+  border-bottom: 1px solid rgba(124, 58, 237, 0.16);
+}
+
+.mp__dots {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.mp__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.45);
+}
+
+.mp__dots span:first-child  { background: #ef4444; }
+.mp__dots span:nth-child(2) { background: #f59e0b; }
+
+.mp__header-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+/* ── WAVEFORM ──────────────────────────────────────────── */
+.waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.waveform__bar {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--color-primary);
+  opacity: 0.85;
+  animation: waveBar 0.7s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+.waveform__bar:nth-child(1) { height: 40%; }
+.waveform__bar:nth-child(2) { height: 80%; }
+.waveform__bar:nth-child(3) { height: 55%; }
+.waveform__bar:nth-child(4) { height: 100%; }
+.waveform__bar:nth-child(5) { height: 65%; }
+.waveform__bar:nth-child(6) { height: 85%; }
+.waveform__bar:nth-child(7) { height: 45%; }
+
+@keyframes waveBar {
+  from { transform: scaleY(0.25); opacity: 0.5; }
+  to   { transform: scaleY(1);    opacity: 1;   }
+}
+
+/* ── ALBUM DISC ────────────────────────────────────────── */
+.mp__disc-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0 0.75rem;
+}
+
+.mp__disc {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #1a0a35 0%,
+    #7c3aed 25%,
+    #06b6d4 50%,
+    #f97316 70%,
+    #1a0a35 100%
+  );
+  box-shadow:
+    0 0 20px rgba(124, 58, 237, 0.5),
+    0 0 40px rgba(124, 58, 237, 0.2),
+    inset 0 0 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.3s;
+}
+
+.mp__disc--spinning {
+  animation: discSpin 4s linear infinite;
+  box-shadow:
+    0 0 28px rgba(124, 58, 237, 0.7),
+    0 0 60px rgba(124, 58, 237, 0.3),
+    inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes discSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.mp__disc-inner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #1a0a35, #000);
+  border: 1.5px solid rgba(124, 58, 237, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.mp__disc-label {
+  font-size: 0.9rem;
+  filter: grayscale(1) brightness(1.4);
+}
+
+/* ── TRACK INFO ────────────────────────────────────────── */
+.mp__info {
+  text-align: center;
+  padding: 0 1rem;
+  min-height: 2.8rem;
+}
+
+.mp__title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.2rem;
+}
+
+.mp__artist {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--color-blue);
+  text-transform: uppercase;
+}
+
+/* ── PROGRESS ──────────────────────────────────────────── */
+.mp__progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem 0.4rem;
+}
+
+.mp__time {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  width: 2.2rem;
+}
+
+.mp__time:last-child {
+  text-align: right;
+}
+
+.mp__progress {
+  flex: 1;
+  height: 4px;
+  background: rgba(124, 58, 237, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.mp__progress:hover .mp__progress-thumb {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.mp__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-blue));
+  border-radius: 4px;
+  position: relative;
+  min-width: 0;
+  transition: width 0.1s linear;
+}
+
+.mp__progress-thumb {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.6);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* ── CONTROLS ──────────────────────────────────────────── */
+.mp__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0 0.6rem;
+}
+
+.mp__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mp__btn--sm {
+  width: 30px;
+  height: 30px;
+}
+
+.mp__btn--play {
+  width: 42px;
+  height: 42px;
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.5);
+  color: var(--color-primary-light);
+  box-shadow: 0 0 14px rgba(124, 58, 237, 0.2);
+}
+
+.mp__btn:hover {
+  color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  background: rgba(124, 58, 237, 0.18);
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.35);
+}
+
+.mp__btn--play:hover {
+  background: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.5);
+}
+
+.mp__btn:active {
+  transform: scale(0.95);
+}
+
+/* ── VOLUME ────────────────────────────────────────────── */
+.mp__volume {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0 0.9rem 0.9rem;
+}
+
+.mp__volume-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.mp__volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(124, 58, 237, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+.mp__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary-glow);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.mp__volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.mp__volume-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: none;
+  cursor: pointer;
+}
+
+/* ── MOBILE ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .mp {
+    right: 1rem;
+    bottom: 1rem;
+    width: 200px;
+  }
+
+  .mp__disc {
+    width: 64px;
+    height: 64px;
+  }
+
+  .mp__disc-inner {
+    width: 22px;
+    height: 22px;
+  }
+}
