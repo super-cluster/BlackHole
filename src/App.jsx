@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -8,8 +9,11 @@ import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useScrollSpy } from './hooks/useScrollSpy'
+import { useVisitorTracking } from './hooks/useVisitorTracking'
+import AdminDashboard from './pages/AdminDashboard'
 
-export default function App() {
+// The main portfolio page
+function Portfolio() {
   useScrollSpy()
 
   return (
@@ -35,5 +39,23 @@ export default function App() {
 
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  // Fire visitor tracking on every page load (skips localhost + bots automatically)
+  useVisitorTracking()
+
+  return (
+    <Routes>
+      {/* Main portfolio */}
+      <Route path="/" element={<Portfolio />} />
+
+      {/* Obscure admin route — password-gated analytics dashboard */}
+      <Route path="/blackhole-stats" element={<AdminDashboard />} />
+
+      {/* Catch-all → portfolio */}
+      <Route path="*" element={<Portfolio />} />
+    </Routes>
   )
 }
