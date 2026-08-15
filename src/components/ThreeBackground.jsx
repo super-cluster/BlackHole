@@ -103,13 +103,14 @@ const NEBULA_FRAG = `
                   fbm(uv + 1.0*q + vec2(8.3,2.8) + 0.008*uTime));
     float f = fbm(uv + r);
 
-    // Very subtle, realistic deep space colors (Hubble-like palette)
-    vec3 color = mix(vec3(0.0), vec3(0.08, 0.02, 0.02), clamp(f*f*3.0, 0.0, 1.0)); // Deep rust/red
-    color = mix(color, vec3(0.01, 0.03, 0.08), clamp(length(q), 0.0, 1.0)); // Deep blue
-    color = mix(color, vec3(0.05, 0.02, 0.06), clamp(length(r.x), 0.0, 1.0)); // Violet
+    // Midnight Solar palette — deep navy + gold sun shimmer
+    vec3 color = mix(vec3(0.0), vec3(0.01, 0.04, 0.12), clamp(f*f*3.0, 0.0, 1.0)); // Deep midnight blue
+    color = mix(color, vec3(0.00, 0.06, 0.18), clamp(length(q), 0.0, 1.0));         // Cobalt blue
+    color = mix(color, vec3(0.08, 0.05, 0.01), clamp(length(r.x), 0.0, 1.0));       // Warm sun gold tint
 
-    // Highlight the densest parts with faint glow
-    color += vec3(0.05, 0.06, 0.07) * smoothstep(0.4, 0.8, f);
+    // Highlight densest cloud cores with gold-blue shimmer
+    color += vec3(0.10, 0.14, 0.22) * smoothstep(0.4, 0.8, f);  // Blue highlights
+    color += vec3(0.08, 0.06, 0.01) * smoothstep(0.6, 0.9, f);  // Gold core
 
     // Set density and opacity for additive blending
     float alpha = smoothstep(0.1, 0.9, f);
@@ -127,7 +128,7 @@ export default function ThreeBackground() {
     const H = mount.clientHeight
 
     const scene = new THREE.Scene()
-    scene.fog = new THREE.FogExp2(0x000000, 0.00015)
+    scene.fog = new THREE.FogExp2(0x00020f, 0.00015)
 
     const camera = new THREE.PerspectiveCamera(45, W / H, 1, 10000)
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
@@ -160,6 +161,10 @@ export default function ThreeBackground() {
     const galaxies = []
     function createGalaxy(opts) {
       const { count, size, radius, branches, spin, randomness, randomnessPower, insideColor, outsideColor } = opts
+      
+      const group = new THREE.Group()
+      
+      // 1. Galaxy Particles
       const geo = new THREE.BufferGeometry()
       const positions = new Float32Array(count * 3)
       const colors = new Float32Array(count * 3)
@@ -219,25 +224,57 @@ export default function ThreeBackground() {
         `
       })
       const mesh = new THREE.Points(geo, mat)
-      scene.add(mesh)
-      galaxies.push(mesh)
-      return mesh
+      group.add(mesh)
+      
+      // 2. Core Glow Background Sprite
+      const canvas = document.createElement('canvas')
+      canvas.width = 256
+      canvas.height = 256
+      const ctx = canvas.getContext('2d')
+      
+      const r_c = Math.floor(colIn.r * 255)
+      const g_c = Math.floor(colIn.g * 255)
+      const b_c = Math.floor(colIn.b * 255)
+      
+      const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128)
+      gradient.addColorStop(0, `rgba(${r_c}, ${g_c}, ${b_c}, 0.8)`)
+      gradient.addColorStop(0.2, `rgba(${r_c}, ${g_c}, ${b_c}, 0.3)`)
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
+      
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, 256, 256)
+      
+      const glowTex = new THREE.CanvasTexture(canvas)
+      const glowMat = new THREE.SpriteMaterial({
+        map: glowTex,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        opacity: 0.9
+      })
+      const glowSprite = new THREE.Sprite(glowMat)
+      glowSprite.scale.set(radius * 4.5, radius * 4.5, 1)
+      group.add(glowSprite)
+
+      scene.add(group)
+      galaxies.push(group)
+      return group
     }
 
     // Milky Way style spiral
     const galaxy1 = createGalaxy({
       count: 40000, size: 25.0, radius: 1200, branches: 3, spin: 0.0015,
       randomness: 0.4, randomnessPower: 2.5,
-      insideColor: 0xffddaa, outsideColor: 0x4466ff
+      insideColor: 0xffddaa, outsideColor: 0x00c8ff
     })
     galaxy1.position.set(2200, 1200, -3800)
     galaxy1.rotation.set(0.8, 0.4, 0)
 
-    // Purple/Red companion galaxy
+    // Gold/Blue companion galaxy
     const galaxy2 = createGalaxy({
       count: 25000, size: 18.0, radius: 800, branches: 4, spin: 0.002,
       randomness: 0.5, randomnessPower: 3,
-      insideColor: 0xffaa55, outsideColor: 0xaa22ff
+      insideColor: 0xffb800, outsideColor: 0x1e6fff
     })
     galaxy2.position.set(-2500, -1000, -3200)
     galaxy2.rotation.set(-0.5, 0.2, 0)
@@ -257,7 +294,7 @@ export default function ThreeBackground() {
     dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3))
 
     const dustMat = new THREE.ShaderMaterial({
-      uniforms: { uColor: { value: new THREE.Color(0x444444) } },
+      uniforms: { uColor: { value: new THREE.Color(0x1a3a6e) } },
       vertexShader: `
         varying float vAlpha;
         void main() {
@@ -349,7 +386,7 @@ export default function ThreeBackground() {
     ship.add(platform)
 
     // Subtle pulsing blue instrument light
-    const instLight = new THREE.PointLight(0x00ffff, 2.0, 50)
+    const instLight = new THREE.PointLight(0xffcc44, 2.0, 50)
     instLight.position.set(0, -9, 8)
     ship.add(instLight)
 
@@ -358,76 +395,148 @@ export default function ThreeBackground() {
     ship.rotation.set(0.1, Math.PI, 0.15) // facing away (negative Z), slightly tilted
 
 
-    // ── WARP STARFIELD ────────────────────────────────────────────────────
-    const STAR_COUNT = 6000
-    const starGeo = new THREE.BufferGeometry()
-    const starPos = new Float32Array(STAR_COUNT * 3)
-    const starVels = new Float32Array(STAR_COUNT)
+    // ── STARFIELD — 3 depth layers, random sizes + pink tints ────────────
+    const STAR_VERT = `
+      attribute float aSize;
+      attribute vec3  aColor;
+      attribute float aPhase;
+      varying   float vAlpha;
+      varying   vec3  vColor;
+      varying   float vPhase;
+      void main() {
+        vColor = aColor;
+        vPhase = aPhase;
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_Position  = projectionMatrix * mvPosition;
+        
+        // Normal point size for sparkling stars
+        gl_PointSize = (aSize * 2500.0) / -mvPosition.z;
+        vAlpha = smoothstep(-5000.0, -800.0, mvPosition.z);
+      }
+    `
+    const STAR_FRAG = `
+      uniform float uTime;
+      varying float vAlpha;
+      varying vec3  vColor;
+      varying float vPhase;
+      void main() {
+        // Distance from center of the point sprite
+        float d = distance(gl_PointCoord, vec2(0.5));
+        if (d > 0.5) discard;
+        
+        // Sparkling glowing circle
+        float core = pow(1.0 - (d * 2.0), 3.0);
+        float halo = pow(1.0 - (d * 2.0), 1.2) * 0.35;
+        float intensity = core + halo;
+        
+        // Dynamic twinkling effect using sine wave and random phase
+        float twinkle = 0.5 + 0.5 * sin(uTime * 4.0 + vPhase);
+        intensity *= (0.4 + 0.6 * twinkle); // Keep minimum brightness at 40%
+        
+        gl_FragColor = vec4(vColor, intensity * vAlpha);
+      }
+    `
 
-    // Create a tunnel/cylinder distribution of stars extending far forward
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const theta = Math.random() * Math.PI * 2
-      // Concentrated slightly away from the center to leave a path
-      const r = 20 + Math.random() * 2000
+    function makeStarLayer({ count, spread, zRange, sizeMin, sizeMax, cylindrical }) {
+      const geo  = new THREE.BufferGeometry()
+      const pos  = new Float32Array(count * 3)
+      const size = new Float32Array(count)
+      const col  = new Float32Array(count * 3)
+      const vels = new Float32Array(count)
+      const phase = new Float32Array(count)
 
-      starPos[i * 3] = Math.cos(theta) * r
-      starPos[i * 3 + 1] = Math.sin(theta) * r
-      starPos[i * 3 + 2] = -Math.random() * 4000 + 500 // Range: +500 to -3500
+      // Colour palette: Lots of pinks and soft whites
+      const palette = [
+        new THREE.Color(0xffffff), // White
+        new THREE.Color(0xffb6c1), // Light Pink
+        new THREE.Color(0xff69b4), // Hot Pink
+        new THREE.Color(0xff1493), // Deep Pink
+        new THREE.Color(0xffc0cb), // Pink
+        new THREE.Color(0xfddde6), // Very Soft Pink
+      ]
 
-      // Speed varies (parallax)
-      starVels[i] = 2.0 + Math.random() * 8.0
+      for (let i = 0; i < count; i++) {
+        if (cylindrical) {
+          const theta = Math.random() * Math.PI * 2
+          const r = 30 + Math.random() * spread
+          pos[i*3]   = Math.cos(theta) * r
+          pos[i*3+1] = Math.sin(theta) * r
+        } else {
+          pos[i*3]   = (Math.random() - 0.5) * spread
+          pos[i*3+1] = (Math.random() - 0.5) * spread
+        }
+        pos[i*3+2] = -Math.random() * zRange + 600
+
+        vels[i] = 1.0 + Math.random() * 6.0
+        phase[i] = Math.random() * Math.PI * 2.0 // Random twinkle offset
+
+        // Random size — occasional big bright sparkler
+        const isBright = Math.random() < 0.06
+        size[i] = isBright
+          ? sizeMax * (1.4 + Math.random() * 1.2)
+          : sizeMin + Math.random() * (sizeMax - sizeMin)
+
+        const c = palette[Math.floor(Math.random() * palette.length)]
+        col[i*3]   = c.r
+        col[i*3+1] = c.g
+        col[i*3+2] = c.b
+      }
+
+      geo.setAttribute('position', new THREE.BufferAttribute(pos,  3))
+      geo.setAttribute('aSize',    new THREE.BufferAttribute(size, 1))
+      geo.setAttribute('aColor',   new THREE.BufferAttribute(col,  3))
+      geo.setAttribute('aPhase',   new THREE.BufferAttribute(phase, 1))
+
+      const mat = new THREE.ShaderMaterial({
+        uniforms: { uTime: { value: 0.0 } },
+        vertexShader:   STAR_VERT,
+        fragmentShader: STAR_FRAG,
+        transparent: true,
+        depthWrite:  false,
+        blending:    THREE.AdditiveBlending,
+      })
+      const points = new THREE.Points(geo, mat)
+      scene.add(points)
+      
+      return {
+        points,
+        geo,
+        mat,
+        vels,
+        count,
+        spread,
+        cylindrical
+      }
     }
 
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3))
-
-    // Custom shader for stars to stretch them based on velocity (motion blur)
-    const starMat = new THREE.ShaderMaterial({
-      uniforms: {
-        uColor: { value: new THREE.Color(0xffffff) }
-      },
-      vertexShader: `
-        varying float vAlpha;
-        void main() {
-          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_Position = projectionMatrix * mvPosition;
-          
-          // Size attenuation
-          gl_PointSize = (1200.0 / -mvPosition.z);
-          // Fade out distant stars
-          vAlpha = smoothstep(-4000.0, -1000.0, mvPosition.z);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 uColor;
-        varying float vAlpha;
-        void main() {
-          // Soft circle
-          float d = distance(gl_PointCoord, vec2(0.5));
-          if(d > 0.5) discard;
-          
-          // Glow center
-          float intensity = pow(1.0 - (d * 2.0), 1.5);
-          gl_FragColor = vec4(uColor, intensity * vAlpha * 0.8);
-        }
-      `,
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending
+    // Layer 1 — deep background: many tiny stars spread wide
+    const starLayer1 = makeStarLayer({
+      count: 22000, spread: 8000, zRange: 6000,
+      sizeMin: 0.3, sizeMax: 1.0, cylindrical: false
+    })
+    // Layer 2 — mid-field: medium density cylinder of stars
+    const starLayer2 = makeStarLayer({
+      count: 30000, spread: 3000, zRange: 4500,
+      sizeMin: 0.6, sizeMax: 1.8, cylindrical: true
+    })
+    // Layer 3 — foreground sparklers: fewer, large, vivid
+    const starLayer3 = makeStarLayer({
+      count: 10000, spread: 4000, zRange: 3000,
+      sizeMin: 1.2, sizeMax: 3.2, cylindrical: false
     })
 
-    const stars = new THREE.Points(starGeo, starMat)
-    scene.add(stars)
+    const starLayers = [starLayer1, starLayer2, starLayer3]
 
 
     // ── ASTEROID FIELD ────────────────────────────────────────────────────
-    const ASTEROID_COUNT = 80
+    const ASTEROID_COUNT = 15
     // Use an Icosahedron with a custom shader to deform vertices procedurally
     const rockGeo = new THREE.IcosahedronGeometry(8, 3)
 
     const rockMat = new THREE.ShaderMaterial({
       uniforms: {
-        uColor: { value: new THREE.Color(0x333b47) },
-        uRimColor: { value: new THREE.Color(0xaaddff) },
+        uColor: { value: new THREE.Color(0x1a2a40) },
+        uRimColor: { value: new THREE.Color(0x7ab8ff) },
         uLightDir: { value: rimLight.position.clone().normalize() }
       },
       vertexShader: ASTEROID_VERT,
@@ -482,7 +591,6 @@ export default function ThreeBackground() {
 
     // ── ANIMATION LOOP ────────────────────────────────────────────────────
     let animId, time = 0
-    const posArr = starGeo.attributes.position.array
 
     const animate = () => {
       animId = requestAnimationFrame(animate)
@@ -500,18 +608,32 @@ export default function ThreeBackground() {
       instLight.intensity = 1.0 + Math.sin(time * 8.0) * 0.5
 
       // 2. Warp Stars Forward
-      for (let i = 0; i < STAR_COUNT; i++) {
-        posArr[i * 3 + 2] += starVels[i] * 4.0 // Fly forward
-        if (posArr[i * 3 + 2] > 100) { // Passed the camera
-          posArr[i * 3 + 2] = -4000 // Reset far away
-          // Re-randomize x/y to avoid noticeable looping
-          const theta = Math.random() * Math.PI * 2
-          const r = 20 + Math.random() * 2000
-          posArr[i * 3] = Math.cos(theta) * r
-          posArr[i * 3 + 1] = Math.sin(theta) * r
+      starLayers.forEach(layer => {
+        layer.mat.uniforms.uTime.value = time
+        
+        const posArr = layer.geo.attributes.position.array
+        const vels = layer.vels
+        const count = layer.count
+
+        for (let i = 0; i < count; i++) {
+          posArr[i * 3 + 2] += vels[i] * 3.5 // Normal drifting speed forward
+          
+          if (posArr[i * 3 + 2] > 600) { // Passed the camera
+            posArr[i * 3 + 2] = -5000 // Reset far away
+            // Re-randomize x/y to avoid noticeable looping
+            if (layer.cylindrical) {
+              const theta = Math.random() * Math.PI * 2
+              const r = 30 + Math.random() * layer.spread
+              posArr[i * 3] = Math.cos(theta) * r
+              posArr[i * 3 + 1] = Math.sin(theta) * r
+            } else {
+              posArr[i * 3] = (Math.random() - 0.5) * layer.spread
+              posArr[i * 3 + 1] = (Math.random() - 0.5) * layer.spread
+            }
+          }
         }
-      }
-      starGeo.attributes.position.needsUpdate = true
+        layer.geo.attributes.position.needsUpdate = true
+      })
 
       // Dust Clouds drifting
       const dustPosArr = dustGeo.attributes.position.array

@@ -38,10 +38,10 @@
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background: radial-gradient(circle, #000000 60%, #1a0033 100%);
+  background: radial-gradient(circle, #000000 60%, #00061a 100%);
   box-shadow:
-    0 0 40px rgba(124, 58, 237, 0.3),
-    0 0 80px rgba(124, 58, 237, 0.15);
+    0 0 40px rgba(30, 111, 255, 0.35),
+    0 0 80px rgba(30, 111, 255, 0.18);
   z-index: 4;
 }
 
@@ -59,10 +59,10 @@
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    rgba(255, 255, 220, 0.9) 10%,
-    rgba(255, 160, 50,  0.95) 20%,
-    rgba(220, 80, 15,  0.8) 35%,
-    rgba(120, 30, 200, 0.5) 55%,
+    rgba(255, 245, 180, 0.90) 10%,
+    rgba(255, 184,   0, 0.95) 20%,
+    rgba(255, 120,  20, 0.80) 35%,
+    rgba( 30, 111, 255, 0.50) 55%,
     transparent 75%
   );
   border-radius: 50%;
@@ -78,9 +78,9 @@
   background: conic-gradient(
     from 180deg,
     transparent 0%,
-    rgba(255, 120, 30, 0.55) 15%,
-    rgba(200, 60, 10, 0.45) 30%,
-    rgba(80, 20, 150, 0.3) 50%,
+    rgba(255, 184,   0, 0.55) 15%,
+    rgba(255, 120,  10, 0.42) 30%,
+    rgba( 30, 111, 255, 0.30) 50%,
     transparent 70%
   );
   border-radius: 50%;
@@ -97,8 +97,8 @@
   background: conic-gradient(
     from 90deg,
     transparent 0%,
-    rgba(160, 40, 8, 0.25) 25%,
-    rgba(80, 15, 120, 0.15) 45%,
+    rgba(255, 184,   0, 0.20) 25%,
+    rgba( 30, 111, 255, 0.14) 45%,
     transparent 65%
   );
   border-radius: 50%;
@@ -115,8 +115,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(249, 115, 22, 0.12) 0%,
-    rgba(124, 58, 237, 0.08) 40%,
+    rgba(255, 184,   0, 0.14) 0%,
+    rgba( 30, 111, 255, 0.10) 40%,
     transparent 70%
   );
   animation: singularityPulse 3s ease-in-out infinite;
@@ -129,8 +129,8 @@
   background: radial-gradient(
     ellipse 75% 75% at 58% 50%,
     transparent 30%,
-    rgba(0, 0, 3, 0.45) 65%,
-    rgba(0, 0, 3, 0.92) 100%
+    rgba(0, 2, 15, 0.45) 65%,
+    rgba(0, 2, 15, 0.92) 100%
   );
   pointer-events: none;
 }
@@ -141,7 +141,7 @@
   left: 0;
   width: 45%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 3, 1) 0%, transparent 100%);
+  background: linear-gradient(to right, rgba(0, 2, 15, 1) 0%, transparent 100%);
   pointer-events: none;
 }
 

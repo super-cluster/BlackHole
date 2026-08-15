@@ -1,47 +1,47 @@
 /* ==========================================
-   BLACK HOLE UNIVERSE — DESIGN SYSTEM
+   MIDNIGHT SOLAR — DESIGN SYSTEM
    ========================================== */
 :root {
-  /* VOID PALETTE */
-  --color-bg: #000003;
-  --color-bg-secondary: #04000d;
-  --color-surface: #08050f;
-  --color-surface-2: #0e091a;
-  --color-surface-3: #150f26;
+  /* VOID PALETTE — deep navy-black */
+  --color-bg: #00020f;
+  --color-bg-secondary: #010818;
+  --color-surface: #050e1f;
+  --color-surface-2: #081428;
+  --color-surface-3: #0d1e38;
 
   /* BORDERS */
-  --color-border: rgba(170, 34, 255, 0.14);
-  --color-border-hover: rgba(170, 34, 255, 0.45);
+  --color-border: rgba(30, 111, 255, 0.18);
+  --color-border-hover: rgba(30, 111, 255, 0.52);
 
-  /* GALAXY VIOLET — Primary */
-  --color-primary: #aa22ff;
-  --color-primary-light: #c866ff;
-  --color-primary-dim: #660099;
-  --color-primary-glow: rgba(170, 34, 255, 0.28);
+  /* MIDNIGHT COBALT — Primary */
+  --color-primary: #1e6fff;
+  --color-primary-light: #7ab8ff;
+  --color-primary-dim: #0a3bb5;
+  --color-primary-glow: rgba(30, 111, 255, 0.32);
 
-  /* GALAXY ORANGE — Accent */
-  --color-accent: #ffaa55;
-  --color-accent-light: #ffcc88;
-  --color-accent-glow: rgba(255, 170, 85, 0.3);
+  /* SPARKLING SUN GOLD — Accent */
+  --color-accent: #ffb800;
+  --color-accent-light: #ffe566;
+  --color-accent-glow: rgba(255, 184, 0, 0.38);
 
-  /* GALAXY BLUE — Highlight */
-  --color-blue: #4466ff;
-  --color-blue-glow: rgba(68, 102, 255, 0.28);
+  /* SOLAR CORONA — Highlight */
+  --color-blue: #00c8ff;
+  --color-blue-glow: rgba(0, 200, 255, 0.30);
 
   /* SINGULARITY RED */
   --color-red: #dc2626;
 
   /* TEXT */
-  --color-text: #e8e0f5;
-  --color-text-secondary: #a89bc4;
-  --color-text-muted: #4a3d6b;
+  --color-text: #dceeff;
+  --color-text-secondary: #7fa8d8;
+  --color-text-muted: #2d4a7a;
 
   /* GRADIENTS */
-  --gradient-primary: linear-gradient(135deg, #aa22ff, #660099);
-  --gradient-accent: linear-gradient(135deg, #ffaa55, #dc2626);
-  --gradient-cosmic: linear-gradient(135deg, #aa22ff, #4466ff);
-  --gradient-violet-shine: linear-gradient(90deg, #660099, #c866ff, #660099);
-  --gradient-card: linear-gradient(135deg, rgba(170, 34, 255, 0.04), rgba(68, 102, 255, 0.04));
+  --gradient-primary: linear-gradient(135deg, #1e6fff, #0a3bb5);
+  --gradient-accent: linear-gradient(135deg, #ffb800, #ff7a00);
+  --gradient-cosmic: linear-gradient(135deg, #1e6fff, #00c8ff);
+  --gradient-violet-shine: linear-gradient(90deg, #0a3bb5, #ffb800, #7ab8ff, #0a3bb5);
+  --gradient-card: linear-gradient(135deg, rgba(30, 111, 255, 0.05), rgba(0, 200, 255, 0.04));
 
   /* TYPOGRAPHY */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
@@ -59,9 +59,9 @@
   --radius-xl: 24px;
 
   /* SHADOWS */
-  --shadow-violet: 0 0 40px rgba(170, 34, 255, 0.15);
+  --shadow-violet: 0 0 40px rgba(30, 111, 255, 0.18);
   --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.7);
-  --shadow-card-hover: 0 8px 48px rgba(170, 34, 255, 0.18);
+  --shadow-card-hover: 0 8px 48px rgba(30, 111, 255, 0.22);
 
   /* TRANSITIONS */
   --transition-fast: 0.15s ease;
@@ -143,8 +143,8 @@ body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-primary-light);
-  background: rgba(124, 58, 237, 0.08);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  background: rgba(30, 111, 255, 0.08);
+  border: 1px solid rgba(30, 111, 255, 0.22);
   padding: 0.35rem 1rem;
   border-radius: 2px;
   margin-bottom: 1.25rem;
@@ -217,18 +217,18 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.45);
+  box-shadow: 0 8px 32px rgba(30, 111, 255, 0.48);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--color-primary-light);
-  border: 1.5px solid rgba(124, 58, 237, 0.4);
+  border: 1.5px solid rgba(30, 111, 255, 0.42);
 }
 
 .btn-outline:hover {
   border-color: var(--color-primary);
-  background: rgba(124, 58, 237, 0.07);
+  background: rgba(30, 111, 255, 0.08);
   transform: translateY(-2px);
 }
 
@@ -277,14 +277,14 @@ body {
   font-weight: 500;
   padding: 0.25rem 0.65rem;
   border-radius: 2px;
-  background: rgba(124, 58, 237, 0.08);
+  background: rgba(30, 111, 255, 0.08);
   color: var(--color-primary-light);
-  border: 1px solid rgba(124, 58, 237, 0.18);
+  border: 1px solid rgba(30, 111, 255, 0.2);
   transition: all var(--transition-fast);
 }
 
 .tag:hover {
-  background: rgba(124, 58, 237, 0.16);
+  background: rgba(30, 111, 255, 0.16);
 }
 
 /* ==========================================
@@ -292,7 +292,7 @@ body {
    ========================================== */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(30, 111, 255, 0.22), transparent);
   position: relative;
 }
 
@@ -303,10 +303,10 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 0.65rem;
-  color: var(--color-primary-dim);
+  color: var(--color-accent);
   background: var(--color-bg);
   padding: 0 1rem;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 /* ==========================================
@@ -323,19 +323,19 @@ body {
 .orb-violet {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(30, 111, 255, 0.12), transparent 70%);
 }
 
 .orb-orange {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.10), transparent 70%);
 }
 
 .orb-blue {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(0, 200, 255, 0.09), transparent 70%);
 }
 
 @keyframes floatOrb {
@@ -386,7 +386,7 @@ body {
   will-change: transform, opacity;
 }
 
-/* Violet nebula — top-left */
+/* Midnight cobalt nebula — top-left */
 .star-glow::before {
   width: 80vw;
   height: 80vw;
@@ -394,15 +394,15 @@ body {
   left: -20vw;
   background: radial-gradient(
     ellipse at center,
-    rgba(124, 58, 237, 0.45) 0%,
-    rgba(91, 33, 182, 0.25) 35%,
+    rgba(30, 111, 255, 0.42) 0%,
+    rgba(10, 59, 181, 0.22) 35%,
     transparent 70%
   );
   filter: blur(90px);
   animation: starDrift1 18s ease-in-out infinite alternate;
 }
 
-/* Cyan star — bottom-right */
+/* Sparkling sun corona — bottom-right */
 .star-glow::after {
   width: 60vw;
   height: 60vw;
@@ -410,8 +410,8 @@ body {
   right: -18vw;
   background: radial-gradient(
     ellipse at center,
-    rgba(6, 182, 212, 0.40) 0%,
-    rgba(6, 182, 212, 0.18) 40%,
+    rgba(255, 184, 0, 0.30) 0%,
+    rgba(0, 200, 255, 0.20) 40%,
     transparent 70%
   );
   filter: blur(80px);
@@ -449,11 +449,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
+    box-shadow: 0 0 20px rgba(30, 111, 255, 0.28);
   }
 
   50% {
-    box-shadow: 0 0 45px rgba(124, 58, 237, 0.5), 0 0 80px rgba(124, 58, 237, 0.15);
+    box-shadow: 0 0 45px rgba(30, 111, 255, 0.55), 0 0 80px rgba(255, 184, 0, 0.18);
   }
 }
 

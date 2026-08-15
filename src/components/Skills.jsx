@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 
 const CATEGORY_ICONS  = { 'Languages':'{ }', 'Frameworks':'⚙️', 'Cloud & DevOps':'☁️', 'Databases':'🗄️', 'Architecture':'🏗️' }
-const CATEGORY_COLORS = { 'Languages':'var(--color-primary-light)', 'Frameworks':'var(--color-blue)', 'Cloud & DevOps':'var(--color-accent)', 'Databases':'#a78bfa', 'Architecture':'var(--color-accent-light)' }
+const CATEGORY_COLORS = { 'Languages':'var(--color-primary-light)', 'Frameworks':'var(--color-blue)', 'Cloud & DevOps':'var(--color-accent)', 'Databases':'#7ab8ff', 'Architecture':'var(--color-accent-light)' }
 
 export default function Skills() {
   const skills = useSelector(selectSkills)
